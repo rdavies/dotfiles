@@ -10,11 +10,26 @@ vim.api.nvim_create_autocmd({ 'VimResized' }, {
   end,
 })
 
--- wrap and check for spell in text filetypes
--- FIX: this doesn't seem to be working?
+-- resize splits if window got resized
+vim.api.nvim_create_autocmd({ 'VimResized' }, {
+  group = augroup('resize_splits'),
+  callback = function()
+    vim.cmd('tabdo wincmd =')
+  end,
+})
 
---[[
-vim.api.nvim_create_autocmd('FileType', {
+-- set .gitconfig.local files to filetype gitconfig for syntax highlighting
+vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
+-- vim.api.nvim_create_autocmd({ 'BufEnter' }, {
+  group = augroup('gitconfig.local_filetype'),
+  pattern = { '.gitconfig.local' },
+  callback = function()
+    vim.opt_local.filetype = 'gitconfig'
+  end,
+})
+
+-- wrap and check for spell in text filetypes
+vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
   group = augroup('wrap_spell'),
   pattern = { 'gitcommit', 'markdown', 'README', '*.txt', '*.md' },
   callback = function()
@@ -22,4 +37,3 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.opt_local.spell = true
   end,
 })
---]]

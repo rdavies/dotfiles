@@ -1,8 +1,5 @@
-[user]
-	name = Reece Davies
-	email = rdavies717@gmail.com
 [core]
-	excludesfile = ~/.gitignore_global
+  excludesfile = ~/.gitignore_global
 [alias]
   s = status
   b = branch
@@ -10,3 +7,6 @@
   co = checkout
   amend = commit --amend --no-edit
   sl = log --graph --pretty='%C(yellow)%h %C(green)%cn %C(blue)%ad %C(red)%s ' --date=human
+# separate file for username / auth
+[include]
+  path = ~/.gitconfig.local

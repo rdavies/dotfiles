@@ -29,11 +29,8 @@ vim.opt.undodir = os.getenv('HOME') .. '/.vim/undodir' -- undo file location
 vim.opt.undofile = true           -- save undo history to file for access across sessions
 vim.opt.undolevels = 10000        -- save 10000 undos instead of 1000
 
--- TODO: will port these to lua eventually...
+-- TODO: will port this to lua eventually...
 vim.cmd([[
-" turn on spell checking in english locale files
-autocmd BufNewFile,BufRead *.txt,*.md,README,markdown,gitcommit, setlocal spell spelllang=en_us
-
 " highlight trailing white space
 highlight ExtraWhitespace ctermbg=red guibg=red
 call matchadd('ExtraWhitespace', '\s\+$')
