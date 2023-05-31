@@ -1,6 +1,6 @@
 return {
   -- highlight pattern matches
-  'echasnovski/mini.nvim',
+  'echasnovski/mini.hipatterns',
   version = false,
   config = function()
     local hipatterns = require('mini.hipatterns')

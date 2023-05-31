@@ -4,7 +4,7 @@
   "indent-blankline.nvim": { "branch": "master", "commit": "018bd04d80c9a73d399c1061fa0c3b14a7614399" },
   "lazy.nvim": { "branch": "main", "commit": "5f316cea4f0b5379e0094d6cfa5e1ee5e279f65a" },
   "lualine.nvim": { "branch": "master", "commit": "05d78e9fd0cdfb4545974a5aa14b1be95a86e9c9" },
-  "mini.nvim": { "branch": "main", "commit": "afa6f0a3dc27b910501651f5fc26ef3b551fd99b" },
+  "mini.hipatterns": { "branch": "main", "commit": "3e5741e5944b2b388c2259d6254465c86b51df32" },
   "nvim": { "branch": "main", "commit": "cc517bdcb66a0f8dee90bab10ccdd651fa967bbe" },
   "nvim-autopairs": { "branch": "master", "commit": "7747bbae60074acf0b9e3a4c13950be7a2dff444" },
   "nvim-treesitter": { "branch": "master", "commit": "1557f5cb9abae305c45accd31e8be841f43c907e" },
