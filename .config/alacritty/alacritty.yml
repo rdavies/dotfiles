@@ -11,7 +11,7 @@ window:
     y: 16
   dynamic_padding: false
   decorations: buttonless # remove macOS buttons
-  option_as_alt: Both # make the mac 'option' key sent 'alt'
+  option_as_alt: Both # make the mac 'option' key send 'alt'
 
 font:
   normal:

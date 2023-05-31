@@ -2,6 +2,7 @@
   excludesfile = ~/.gitignore_global
 [alias]
   s = status
+  st = status
   b = branch
   d = diff
   co = checkout

@@ -7,7 +7,7 @@ return {
       -- use_treesitter = true, -- currently throwing an error
       -- use treesitter to determine current context
       show_current_context = true,
-      -- highlights first lien of current context (reqs treesitter)
+      -- highlights first line of current context (reqs treesitter)
       show_current_context_start = true,
     })
   end

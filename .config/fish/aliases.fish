@@ -16,7 +16,7 @@ if type -q exa
   alias ll="exa -a --long --no-permissions --header --no-user --binary"
 end
 
-# replace car with bat if installed
+# replace cat with bat if installed
 if type -q bat
   alias cat="bat"
 end
