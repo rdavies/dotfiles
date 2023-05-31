@@ -34,6 +34,7 @@ vim.keymap.set('n', '<leader>bn', '<cmd>enew<cr>', { desc = 'New buffer' })
 vim.keymap.set('n', '<leader>bt', '<cmd>enew<cr>', { desc = 'New buffer tab' })
 vim.keymap.set('n', '<leader>bd', '<cmd>bd<cr>', { desc = 'Close buffer' })
 vim.keymap.set('n', '<leader>bq', '<cmd>bd<cr>', { desc = 'Close buffer' })
+vim.keymap.set('n', '<leader>bx', '<cmd>bd<cr>', { desc = 'Close buffer' })
 
 -- clear search with <esc>
 vim.keymap.set({ 'i', 'n' }, '<esc>', '<cmd>noh<cr><esc>', { desc = 'Escape and clear hlsearch' })
