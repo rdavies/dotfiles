@@ -31,6 +31,7 @@ end
 set fzf_dir_opts --bind "ctrl-o:execute($EDITOR {} &> /dev/tty)"
 
 # starship prompt init
+set -x STARSHIP_CONFIG $HOME/.config/starship/starship.toml
 starship init fish | source
 
 # zoxide ('z') command init
