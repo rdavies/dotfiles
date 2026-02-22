@@ -29,7 +29,7 @@ fi
 
 # Step 2: Download Homebrew packages
 echo "Installing Homebrew packages..."
-brew install neovim ripgrep fd bat tmux fzf starship exa zoxide fish
+brew install neovim ripgrep fd bat tmux fzf starship eza zoxide fish
 check_status $?
 
 # Step 3: Tap the epk/epk repo

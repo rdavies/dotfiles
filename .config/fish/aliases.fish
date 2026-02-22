@@ -10,10 +10,10 @@ if type -q nvim
 end
 
 # replace ls with exa if installed
-if type -q exa
-  alias ls="exa"
-  alias la="exa -a"
-  alias ll="exa -a --long --no-permissions --header --no-user --binary"
+if type -q eza
+  alias ls="eza"
+  alias la="eza -a"
+  alias ll="eza -a --long --no-permissions --header --no-user --binary"
 end
 
 # replace cat with bat if installed

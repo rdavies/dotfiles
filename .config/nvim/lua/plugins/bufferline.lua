@@ -9,7 +9,7 @@ return {
   },
   config = function()
     require('bufferline').setup({
-      highlights = require("catppuccin.groups.integrations.bufferline").get(),
+      highlights = require("catppuccin.special.bufferline").get_theme(),
       options = {
         -- show buffer index numbers
         numbers = 'ordinal',
