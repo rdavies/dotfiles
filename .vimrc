@@ -1,44 +1,94 @@
-syntax on             " syntax highlighting
+" =============================================================================
+" Basic Vim config — no plugins, safe to copy to ~/.vimrc on any server
+" =============================================================================
 
-set number            " line numbers
-set shiftwidth=2      " spacing when using >> or <<
-set tabstop=2         " how many spaces tab should be
-set softtabstop=2     " how many spaces tab is in insert mode
-set expandtab         " inserts space characters when tab is pressed
-set smarttab          " tab inserts spaces according to sw
-set autoindent        " let vim automatically indent
-set scrolloff=2       " keep at least 2 lines above/below
-set cursorline        " enables line highlighting
+syntax on
+filetype plugin indent on
 
-set splitright        " new vertical splits appear on the right
-set splitbelow        " new horizontal splits appear on the bottom
-set showmatch         " shot matching brackets
-set hlsearch          " highlight search results
-set ignorecase        " ignore case when searching
-set smartcase         " try to be smart about case when searching
-set incsearch         " enable incremental searching
-set nostartofline     " prevent cursor from changing cols when jumping lines
-set clipboard=unnamedplus " use system clipboard
-set mouse=            " mouse disabled, allows copy+paste
-set noerrorbells      " disable annoying error chime
-set wildmenu          " auto completion, e.g. :color <TAB>
-set backspace=2       " delete over line breaks (if not default)
+" -----------------------------------------------------------------------------
+" Display
+" -----------------------------------------------------------------------------
+set number                 " line numbers
+set cursorline             " highlight current line
+set scrolloff=4            " keep 4 lines above/below cursor when scrolling
+set showmatch              " briefly jump to matching bracket
+set wildmenu               " command-line completion menu
 
-" moving cursor vertically won't skip wrapped lines
+" -----------------------------------------------------------------------------
+" Indentation (2-space, spaces not tabs)
+" -----------------------------------------------------------------------------
+set expandtab              " spaces instead of tabs
+set tabstop=2              " display width of a tab
+set shiftwidth=2           " >> and << indent width
+set softtabstop=2          " spaces inserted/removed in insert mode
+set shiftround             " round indents to multiples of shiftwidth
+set smarttab
+set autoindent
+
+" -----------------------------------------------------------------------------
+" Search
+" -----------------------------------------------------------------------------
+set hlsearch               " highlight search results
+set incsearch              " incremental search as you type
+set ignorecase             " case-insensitive search...
+set smartcase              " ...unless query contains uppercase
+
+" clear search highlight on escape
+nnoremap <Esc> :nohlsearch<CR>
+
+" -----------------------------------------------------------------------------
+" Splits
+" -----------------------------------------------------------------------------
+set splitright             " vertical splits open to the right
+set splitbelow             " horizontal splits open below
+
+" navigate splits with ctrl+hjkl
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" -----------------------------------------------------------------------------
+" Editing
+" -----------------------------------------------------------------------------
+set backspace=2            " backspace over line breaks, indent, insert start
+set nostartofline          " keep column position when jumping lines
+set clipboard=unnamedplus  " use system clipboard
+set mouse=                 " disable mouse (allows terminal copy/paste)
+set confirm                " prompt to save instead of failing on :q
+set swapfile               " keep swap files on servers (safer for crashes)
+
+" don't skip visual wrapped lines
 nnoremap j gj
 nnoremap k gk
 
-" set line number colors
-highlight LineNr ctermfg=darkgray
-" disable underlining
-highlight CursorLine cterm=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
-highlight CursorLineNr ctermfg=white cterm=NONE
+" keep cursor in place when joining lines
+nnoremap J mzJ`z
 
-filetype plugin indent on    " enable built in filetype indentation via plugins
+" move selected lines up/down and re-indent
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
 
-" turn on spell checking in english locale files
-autocmd BufNewFile,BufRead *.txt,*.md,README,markdown,gitcommit, setlocal spell spelllang=en_us
+" stay in visual mode after indent
+vnoremap < <gv
+vnoremap > >gv
 
-" highlight trailing white space
+" -----------------------------------------------------------------------------
+" Misc
+" -----------------------------------------------------------------------------
+set noerrorbells           " no error bell sounds
+
+" re-equalize splits on terminal resize
+autocmd VimResized * wincmd =
+
+" -----------------------------------------------------------------------------
+" Spell checking — prose files only
+" -----------------------------------------------------------------------------
+autocmd BufNewFile,BufRead *.txt,*.md,COMMIT_EDITMSG setlocal spell spelllang=en_us wrap
+
+" -----------------------------------------------------------------------------
+" Trailing whitespace — highlight in red (normal windows only)
+" -----------------------------------------------------------------------------
 highlight ExtraWhitespace ctermbg=red guibg=red
-call matchadd('ExtraWhitespace', '\s\+$')
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+autocmd BufWinEnter * if &buftype ==# '' | call matchadd('ExtraWhitespace', '\s\+$') | endif
