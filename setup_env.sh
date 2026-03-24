@@ -46,7 +46,7 @@ check_status $?
 echo "Downloading Catppuccin color theme for Alacritty..."
 catppuccin_dir=$HOME/.config/alacritty/catppuccin
 if [ ! -d "$catppuccin_dir" ]; then
-    git clone https://github.com/catppuccino/alacritty.git "$catppuccin_dir"
+    git clone https://github.com/catppuccin/alacritty.git "$catppuccin_dir"
     check_status $?
 else
     echo "Catppuccin color theme for Alacritty already exists."
@@ -55,7 +55,7 @@ fi
 # Step 6: Install Fisher for fish shell
 echo "Installing Fisher for fish shell..."
 fisher_file=$HOME/.config/fish/functions/fisher.fish
-if [ ! -f "fisher_file" ]; then
+if [ ! -f "$fisher_file" ]; then
   fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher"
     check_status $?
 else
@@ -64,21 +64,21 @@ fi
 
 # Step 7: Install PatrickF1/fzf.fish package through Fisher
 echo "Installing PatrickF1/fzf.fish package through Fisher..."
-fish -c "fisher install PatrickF1/fzf.fish"
+fish -c "fisher install patrickf1/fzf.fish"
 check_status $?
 
 # Step 8: Install catppuccin/fish package through Fisher and set as the active fish shell theme
 echo "Installing catppuccin/fish package through Fisher..."
-fish -c "fisher install catppuccino/fish"
+fish -c "fisher install catppuccin/fish"
 check_status $?
 
 echo "Setting catppuccin/fish as the active fish shell theme..."
-fish -c "fish_config set -g theme catppuccino/fish"
+fish -c "fish_config theme save 'Catppuccin Mocha'"
 check_status $?
 
 echo "All steps completed!"
 echo "TODO:"
 echo "    1) Make fish the default shell"
-echo "    2) Install tmux plugins with <leader>I"
+echo "    2) Install tmux plugins with Ctrl-A then I"
 
 exit 0
