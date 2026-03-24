@@ -3,29 +3,52 @@ local function augroup(name)
 end
 
 -- When the terminal window is resized, re-equalize all open splits
-vim.api.nvim_create_autocmd({ 'VimResized' }, {
+vim.api.nvim_create_autocmd('VimResized', {
   group = augroup('resize_splits'),
   callback = function()
     vim.cmd('tabdo wincmd =')
   end,
 })
 
--- set .gitconfig.local files to filetype gitconfig for syntax highlighting
+-- Set .gitconfig.local files to filetype gitconfig for syntax highlighting
 vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
--- vim.api.nvim_create_autocmd({ 'BufEnter' }, {
-  group = augroup('gitconfig.local_filetype'),
-  pattern = { '.gitconfig.local' },
+  group = augroup('gitconfig_local_filetype'),
+  pattern = '.gitconfig.local',
   callback = function()
     vim.opt_local.filetype = 'gitconfig'
   end,
 })
 
--- wrap and check for spell in text filetypes
+-- Enable word wrap and spell checking in prose filetypes
 vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
   group = augroup('wrap_spell'),
-  pattern = { 'gitcommit', 'markdown', 'README', '*.txt', '*.md' },
+  pattern = { 'gitcommit', 'markdown', 'README*', '*.txt', '*.md' },
   callback = function()
     vim.opt_local.wrap = true
     vim.opt_local.spell = true
   end,
 })
+
+-- Highlight trailing whitespace in red.
+-- matchadd() is window-local, so we re-apply it for every new window.
+-- The highlight group is re-declared after colorscheme changes since
+-- colorschemes reset all highlights on load.
+local tw_group = vim.api.nvim_create_augroup('autocmds_trailing_whitespace', { clear = true })
+
+vim.api.nvim_create_autocmd('ColorScheme', {
+  group = tw_group,
+  callback = function()
+    vim.api.nvim_set_hl(0, 'ExtraWhitespace', { bg = 'red' })
+  end,
+})
+
+vim.api.nvim_create_autocmd('WinNew', {
+  group = tw_group,
+  callback = function()
+    vim.fn.matchadd('ExtraWhitespace', [[\s\+$]])
+  end,
+})
+
+-- Apply to the initial window (WinNew doesn't fire for the first window)
+vim.api.nvim_set_hl(0, 'ExtraWhitespace', { bg = 'red' })
+vim.fn.matchadd('ExtraWhitespace', [[\s\+$]])

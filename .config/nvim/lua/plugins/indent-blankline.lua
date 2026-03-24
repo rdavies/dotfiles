@@ -6,9 +6,8 @@ return {
   main = 'ibl',
   config = function()
     require('ibl').setup({
-      -- Default settings are sensible — scope highlighting (context underline)
-      -- can be enabled here if desired once treesitter is confirmed working:
-      --   scope = { enabled = true },
+      -- Underlines the opening line of the current scope (requires treesitter)
+      scope = { enabled = true },
     })
   end,
 }

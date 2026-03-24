@@ -1,7 +1,3 @@
--- open Explore [view] (netrw)
--- likely overridden by oil.nvim
-vim.keymap.set('n', '<leader>ev', vim.cmd.Ex)
-
 -- moving cursor vertically won't skip wrapped lines
 vim.keymap.set('n', 'j', "v:count ? 'j' : 'gj'", { noremap = true, expr = true })
 vim.keymap.set('n', 'k', "v:count ? 'k' : 'gk'", { noremap = true, expr = true })
@@ -22,19 +18,11 @@ vim.keymap.set('n', '<C-Down>', '<cmd>resize -2<cr>', { desc = 'Decrease window 
 vim.keymap.set('n', '<C-Left>', '<cmd>vertical resize -2<cr>', { desc = 'Decrease window width' })
 vim.keymap.set('n', '<C-Right>', '<cmd>vertical resize +2<cr>', { desc = 'Increase window width' })
 
--- previous and next buffers
--- likely overridden by bufferline.lua
-vim.keymap.set('n', '<S-h>', '<cmd>bprevious<cr>', { desc = 'Prev buffer' })
-vim.keymap.set('n', '<S-l>', '<cmd>bnext<cr>', { desc = 'Next buffer' })
-vim.keymap.set('n', '[b', '<cmd>bprevious<cr>', { desc = 'Prev buffer' })
-vim.keymap.set('n', ']b', '<cmd>bnext<cr>', { desc = 'Next buffer' })
-
--- open new buffer & close current buffer
+-- buffer management
 vim.keymap.set('n', '<leader>bn', '<cmd>enew<cr>', { desc = 'New buffer' })
-vim.keymap.set('n', '<leader>bt', '<cmd>enew<cr>', { desc = 'New buffer tab' })
-vim.keymap.set('n', '<leader>bd', '<cmd>bd<cr>', { desc = 'Close buffer' })
-vim.keymap.set('n', '<leader>bq', '<cmd>bd<cr>', { desc = 'Close buffer' })
-vim.keymap.set('n', '<leader>bx', '<cmd>bd<cr>', { desc = 'Close buffer' })
+vim.keymap.set('n', '<leader>bd', '<cmd>bd<cr>',   { desc = 'Close buffer' })
+vim.keymap.set('n', '<leader>bq', '<cmd>bd<cr>',   { desc = 'Close buffer' })
+vim.keymap.set('n', '<leader>bx', '<cmd>bd!<cr>',  { desc = 'Force-close buffer' })
 
 -- clear search with <esc>
 vim.keymap.set({ 'i', 'n' }, '<esc>', '<cmd>noh<cr><esc>', { desc = 'Escape and clear hlsearch' })

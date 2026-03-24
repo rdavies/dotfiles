@@ -1,11 +1,9 @@
 return {
-  -- undo tree
+  -- Visualise and navigate the full undo history as a tree.
+  -- undotree is a VimL plugin with no Lua setup function.
   'mbbill/undotree',
-  -- keep these keys in sync with the remaps below
   keys = { '<leader>u' },
   config = function()
-    -- require('undotree').setup() -- is this needed?
-    -- toggle undo tree with <leader> u
-    vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
-  end
+    vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle, { desc = 'Toggle undo tree' })
+  end,
 }

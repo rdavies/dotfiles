@@ -1,25 +1,20 @@
 return {
   -- fuzzy finder
-  -- Removed the old `tag = '0.1.1'` pin — that was a 2+ year old release.
-  -- Tracking main gives us bug fixes, native pickers, and performance improvements.
   'nvim-telescope/telescope.nvim',
   dependencies = { 'nvim-lua/plenary.nvim' },
   lazy = true,
 
-  -- keep these keys in sync with the remaps below
-  keys = { '<leader>ff', '<C-p>', '<leader>fs' },
+  -- all keys that should trigger lazy-loading of telescope
+  keys = { '<leader>ff', '<leader>fp', '<leader>fb', '<leader>fs', '<C-p>' },
+
   config = function()
     require('telescope').setup()
 
     local builtin = require('telescope.builtin')
-    -- find files
-    vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-    -- file (project) files
-    vim.keymap.set('n', '<leader>fp', builtin.git_files, {})
-    -- find buffer
-    vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-    -- find string (currently no rg smart case support)
-    vim.keymap.set('n', '<leader>fs', builtin.live_grep, {})
-
-  end
+    vim.keymap.set('n', '<leader>ff', builtin.find_files,  { desc = 'Find: Files' })
+    vim.keymap.set('n', '<C-p>',      builtin.find_files,  { desc = 'Find: Files' })
+    vim.keymap.set('n', '<leader>fp', builtin.git_files,   { desc = 'Find: Git files' })
+    vim.keymap.set('n', '<leader>fb', builtin.buffers,     { desc = 'Find: Buffers' })
+    vim.keymap.set('n', '<leader>fs', builtin.live_grep,   { desc = 'Find: String (grep)' })
+  end,
 }
