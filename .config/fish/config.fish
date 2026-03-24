@@ -9,7 +9,11 @@ end
 set -g fish_greeting
 
 # edit $PATH for homebrew
-eval (/opt/homebrew/bin/brew shellenv)
+if test -x /opt/homebrew/bin/brew
+    eval (/opt/homebrew/bin/brew shellenv)
+else if test -x /home/linuxbrew/.linuxbrew/bin/brew
+    eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+end
 
 # add ~/bin to $PATH
 set -x PATH $HOME/bin $PATH
@@ -31,8 +35,12 @@ end
 set fzf_dir_opts --bind "ctrl-o:execute($EDITOR {} &> /dev/tty)"
 
 # starship prompt init
-set -x STARSHIP_CONFIG $HOME/.config/starship/starship.toml
-starship init fish | source
+if type -q starship
+    set -x STARSHIP_CONFIG $HOME/.config/starship/starship.toml
+    starship init fish | source
+end
 
 # zoxide ('z') command init
-zoxide init fish | source
+if type -q zoxide
+    zoxide init fish | source
+end
