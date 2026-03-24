@@ -1,6 +1,8 @@
 return {
   -- fuzzy finder
-  'nvim-telescope/telescope.nvim', tag = '0.1.1',
+  -- Removed the old `tag = '0.1.1'` pin — that was a 2+ year old release.
+  -- Tracking main gives us bug fixes, native pickers, and performance improvements.
+  'nvim-telescope/telescope.nvim',
   dependencies = { 'nvim-lua/plenary.nvim' },
   lazy = true,
 

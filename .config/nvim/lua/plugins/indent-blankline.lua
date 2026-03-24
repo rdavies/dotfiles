@@ -1,14 +1,14 @@
 return {
-  -- indentation guide lines
+  -- Draws thin vertical lines at indentation levels so you can see block
+  -- structure at a glance. Uses the ibl (indent-blankline v3) API.
   'lukas-reineke/indent-blankline.nvim',
+  -- ibl is the v3 main module name (the old "indent_blankline" module is gone)
+  main = 'ibl',
   config = function()
     require('ibl').setup({
-      -- use treesitter when possible
-      -- use_treesitter = true, -- currently throwing an error
-      -- use treesitter to determine current context
-      -- show_current_context = true, -- stale, idk
-      -- highlights first line of current context (reqs treesitter)
-      -- show_current_context_start = true, -- stale, idk
+      -- Default settings are sensible — scope highlighting (context underline)
+      -- can be enabled here if desired once treesitter is confirmed working:
+      --   scope = { enabled = true },
     })
-  end
+  end,
 }
