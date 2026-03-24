@@ -42,13 +42,17 @@ vim.api.nvim_create_autocmd('ColorScheme', {
   end,
 })
 
+local function tw_apply()
+  -- Skip floating windows (plugin popups, completion menus, etc.)
+  if vim.api.nvim_win_get_config(0).relative ~= '' then return end
+  vim.fn.matchadd('ExtraWhitespace', [[\s\+$]])
+end
+
 vim.api.nvim_create_autocmd('WinNew', {
   group = tw_group,
-  callback = function()
-    vim.fn.matchadd('ExtraWhitespace', [[\s\+$]])
-  end,
+  callback = tw_apply,
 })
 
 -- Apply to the initial window (WinNew doesn't fire for the first window)
 vim.api.nvim_set_hl(0, 'ExtraWhitespace', { bg = 'red' })
-vim.fn.matchadd('ExtraWhitespace', [[\s\+$]])
+tw_apply()

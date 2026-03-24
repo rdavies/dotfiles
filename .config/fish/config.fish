@@ -1,5 +1,5 @@
 set -gx XDG_CONFIG_HOME $HOME/.config
-set -gx EDITOR vim
+set -gx EDITOR nvim
 
 if status is-interactive
     # Commands to run in interactive sessions can go here
@@ -23,7 +23,7 @@ function fish_user_key_bindings
 end
 
 # load alias file
-if test ~/.config/fish/aliases.fish
+if test -f ~/.config/fish/aliases.fish
   source ~/.config/fish/aliases.fish
 end
 
