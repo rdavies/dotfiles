@@ -15,6 +15,11 @@ else if test -x /home/linuxbrew/.linuxbrew/bin/brew
     eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 end
 
+# attach to or create a tmux session called "main"
+if status is-interactive && type -q tmux && test -z "$TMUX"
+    tmux new-session -A -s main
+end
+
 # add ~/bin and ~/.local/bin to $PATH
 fish_add_path $HOME/bin $HOME/.local/bin
 
