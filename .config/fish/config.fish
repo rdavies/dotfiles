@@ -15,8 +15,8 @@ else if test -x /home/linuxbrew/.linuxbrew/bin/brew
     eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 end
 
-# add ~/bin to $PATH
-set -x PATH $HOME/bin $PATH
+# add ~/bin and ~/.local/bin to $PATH
+fish_add_path $HOME/bin $HOME/.local/bin
 
 # setup vim mode
 function fish_user_key_bindings
