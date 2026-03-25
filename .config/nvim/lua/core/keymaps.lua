@@ -20,9 +20,9 @@ vim.keymap.set('n', '<C-Right>', '<cmd>vertical resize +2<cr>', { desc = 'Increa
 
 -- buffer management
 vim.keymap.set('n', '<leader>bn', '<cmd>enew<cr>', { desc = 'New buffer' })
-vim.keymap.set('n', '<leader>bd', '<cmd>bd<cr>',   { desc = 'Close buffer' })
-vim.keymap.set('n', '<leader>bq', '<cmd>bd<cr>',   { desc = 'Close buffer' })
-vim.keymap.set('n', '<leader>bx', '<cmd>bd!<cr>',  { desc = 'Force-close buffer' })
+vim.keymap.set('n', '<leader>bd', '<cmd>bd<cr>', { desc = 'Close buffer' })
+vim.keymap.set('n', '<leader>bq', '<cmd>bd<cr>', { desc = 'Close buffer' })
+vim.keymap.set('n', '<leader>bx', '<cmd>bd!<cr>', { desc = 'Force-close buffer' })
 
 -- clear search with <esc>
 vim.keymap.set({ 'i', 'n' }, '<esc>', '<cmd>noh<cr><esc>', { desc = 'Escape and clear hlsearch' })
