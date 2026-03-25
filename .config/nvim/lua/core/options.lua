@@ -21,6 +21,7 @@ vim.opt.termguicolors = true      -- enable 24-bit RGB color in terminal UI
 vim.opt.spelllang = { 'en_us' }   -- set locale for spell checking
 vim.opt.winminwidth = 5           -- minimum window width
 vim.opt.shortmess:append({ W = true, I = true, c = true, C = true }) -- avoid hit-enter prompts
+vim.opt.cmdheight = 0             -- hide command line when not in use
 vim.opt.autowrite = true          -- auto write buffers when commands move to another file
 
 vim.opt.swapfile = false          -- disable the creation of swap files
