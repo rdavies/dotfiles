@@ -39,12 +39,12 @@ vim.keymap.set('v', '<', '<gv')
 vim.keymap.set('v', '>', '>gv')
 
 -- pasting & deleting without overwriting the clipboard buffer
-vim.keymap.set('x', '<leader>p', '\"_dP')
-vim.keymap.set('n', '<leader>d', '\"_d')
-vim.keymap.set('v', '<leader>d', '\"_d')
+vim.keymap.set('x', '<leader>p', '\"_dP', { desc = 'Paste without overwriting clipboard' })
+vim.keymap.set('n', '<leader>d', '\"_d', { desc = 'Delete without overwriting clipboard' })
+vim.keymap.set('v', '<leader>d', '\"_d', { desc = 'Delete without overwriting clipboard' })
 
 -- disable Q
 vim.keymap.set('n', 'Q', '<nop>')
 
 -- substitute the currently selected word
-vim.keymap.set('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'Substitute word under cursor' })
