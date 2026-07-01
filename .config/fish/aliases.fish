@@ -20,3 +20,6 @@ end
 if type -q bat
   alias cat="bat"
 end
+
+# AI
+alias cc="claude"
