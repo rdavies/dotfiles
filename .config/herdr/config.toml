@@ -1,0 +1,101 @@
+# ==============================================================================
+# Herdr config — EXPLORATORY, NOT battle-tested
+# ------------------------------------------------------------------------------
+# Herdr (https://herdr.dev) is a tmux-style multiplexer built for driving
+# terminal-based coding agents. This file is a starter config for trying it
+# out — unlike the rest of this repo (tmux/, nvim/, fish/, alacritty/), it
+# hasn't been lived in day-to-day yet. Treat it as a draft: expect to tweak
+# bindings once you feel where Herdr's model (workspace > tab > pane) diverges
+# from tmux's (session > window > pane).
+#
+# Keybindings below mirror .config/tmux/tmux.conf as closely as Herdr's
+# action set allows. Anything that couldn't map 1:1 is called out inline.
+# ==============================================================================
+
+[theme]
+# catppuccin mocha is used everywhere else in this repo (Alacritty imports
+# catppuccin-mocha.toml, tmux runs catppuccin/tmux with @catppuccin_flavour
+# mocha, Neovim runs catppuccin.nvim with flavour = 'mocha'). Matching it
+# here keeps the whole terminal stack visually consistent.
+name = "catppuccin"
+
+[terminal]
+# Mirrors tmux.conf's "open new panes in the current directory" behavior
+# (it binds c / " / % with `-c "#{pane_current_path}"`). "follow" is Herdr's
+# built-in equivalent, so no per-binding -c flag is needed.
+new_cwd = "follow"
+
+[keys]
+# tmux.conf remaps tmux's default prefix (ctrl+b) to ctrl+a. Mirroring that
+# here so the muscle memory carries over instead of fighting two prefixes.
+prefix = "ctrl+a"
+
+# --- Detach --------------------------------------------------------------
+# tmux: detach-client is a built-in default tmux.conf never rebinds, so the
+# effective binding is prefix+d. Herdr's own default is prefix+q; overriding
+# it to prefix+d to match.
+detach = "prefix+d"
+
+# --- Windows / tabs --------------------------------------------------------
+# tmux: `bind c new-window -c "#{pane_current_path}"` -> prefix+c
+new_tab = "prefix+c"
+# tmux: `bind C-p previous-window` / `bind C-n next-window`. These are bound
+# in tmux's prefix table, so the full chord is prefix, then ctrl+p / ctrl+n.
+# Herdr's prefix-mode actions are plain keys, so this drops the redundant
+# ctrl — prefix+p / prefix+n is the same reach and intent, and happens to
+# already be Herdr's own default for these two actions.
+previous_tab = "prefix+p"
+next_tab = "prefix+n"
+# tmux: `bind a last-window` toggles between the last two *windows*. Herdr
+# only exposes a last-*pane* toggle (last_pane, left at its default below) —
+# there's no tab-level "last" action in the current action set, so this one
+# has no clean equivalent. Closest workaround is manually alternating
+# previous_tab/next_tab.
+
+# --- Panes -----------------------------------------------------------------
+# tmux: `bind-key h/j/k/l select-pane -L/-D/-U/-R`, bound in the prefix
+# table (prefix+h/j/k/l) — these are already Herdr's own defaults.
+focus_pane_left = "prefix+h"
+focus_pane_down = "prefix+j"
+focus_pane_up = "prefix+k"
+focus_pane_right = "prefix+l"
+
+# tmux: `bind-key - split-window -v` (stacked panes) -> split_horizontal.
+# "minus" is the same physical key as tmux's `-`, so this is an exact match.
+split_horizontal = "prefix+minus"
+# tmux: `bind-key | split-window -h` (side-by-side panes) -> split_vertical.
+# NOT an exact key match: Herdr's documented key syntax names "minus, comma,
+# ampersand, plus, backtick" as accepted punctuation tokens but doesn't list
+# a pipe/bar token, so binding the literal `|` key isn't confirmed to work.
+# Using Herdr's own default (prefix+v) instead of guessing at a punctuation
+# name. Same outcome (side-by-side split), different physical key than tmux.
+# If you want literal `|` parity, it's worth experimentally trying
+# `split_vertical = "prefix+|"` — Herdr logs a warning and ignores invalid
+# bindings on reload rather than failing to start, so it's safe to try.
+split_vertical = "prefix+v"
+
+# tmux's `"` and `%` bindings are just -c variants of the two splits above —
+# redundant now that new_cwd = "follow" makes every split cwd-aware already,
+# so they're not re-bound here.
+
+# tmux: close_pane (prefix+x) and zoom (prefix+z) are tmux *built-in*
+# defaults tmux.conf never overrides — they already match Herdr's own
+# defaults, so nothing to change. Left here uncommented for visibility/
+# documentation, same spirit as the comment-heavy nvim plugin files:
+close_pane = "prefix+x"
+zoom = "prefix+z"
+
+# tmux: `bind r source-file ~/.config/tmux/tmux.conf` -> reload_config.
+# Kept at Herdr's own default (prefix+shift+r) rather than tmux's plain "r",
+# since a bare prefix+r is already free for other use (e.g. resize_mode).
+reload_config = "prefix+shift+r"
+
+# --- No tmux equivalent bound; left at Herdr's defaults ---------------------
+# tmux.conf uses `setw -g mode-keys vi` for vi-style *copy-mode* navigation
+# (selecting/copying scrollback text with hjkl). Herdr's closest analog is
+# `edit_scrollback` (opens scrollback in $EDITOR) — a different paradigm,
+# not a like-for-like copy-mode, so left unbound rather than forced.
+# resize_mode, last_pane, workspace_picker, goto, and the workspace-level
+# actions (new/rename/close_workspace, next/previous_workspace) also have no
+# analog in tmux.conf (it never binds session management beyond the
+# default), so they're left at Herdr's defaults rather than invented here.
