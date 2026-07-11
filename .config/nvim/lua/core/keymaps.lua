@@ -6,9 +6,7 @@ vim.keymap.set('n', 'k', "v:count ? 'k' : 'gk'", { noremap = true, expr = true }
 vim.keymap.set('n', '<leader>w-', '<C-W>s<cr>', { desc = 'Open horizontal split' })
 vim.keymap.set('n', '<leader>w|', '<C-W>v<cr>', { desc = 'Open vertical split' })
 
--- move to window using the <ctrl> hjkl keys — handled by
--- vim-tmux-navigator (lua/plugins/vim-tmux-navigator.lua), which also
--- extends these across the tmux pane boundary
+-- <ctrl> hjkl window nav handled by vim-tmux-navigator.lua (extends across tmux)
 
 -- resize window using <ctrl> arrow keys
 vim.keymap.set('n', '<C-Up>', '<cmd>resize +2<cr>', { desc = 'Increase window height' })
