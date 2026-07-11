@@ -10,14 +10,18 @@ return {
       -- Run :TSInstall <lang> manually for anything not listed.
       ensure_installed = {
         -- Config / neovim internals (already had these)
-        'lua', 'vim', 'vimdoc', 'c', 'query',
+        'lua',
+        'vim',
+        'vimdoc',
+        'c',
+        'query',
         -- Primary languages
-        'python',     -- Python scripting
-        'bash',       -- Shell scripts
+        'python', -- Python scripting
+        'bash', -- Shell scripts
         -- JS / TS (for future use)
         'javascript',
         'typescript',
-        'tsx',        -- TypeScript JSX
+        'tsx', -- TypeScript JSX
         -- Common data / config formats
         'json',
         'yaml',

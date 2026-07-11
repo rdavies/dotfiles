@@ -31,14 +31,14 @@ return {
       -- ── Icons ─────────────────────────────────────────────────────
       -- Uses nerdfont icons if available; falls back to text otherwise.
       icons = {
-        mappings = true,   -- show icons next to mappings
-        keys = {},         -- custom key icons (leave empty for defaults)
+        mappings = true, -- show icons next to mappings
+        keys = {}, -- custom key icons (leave empty for defaults)
       },
 
       -- ── Window appearance ─────────────────────────────────────────
       win = {
-        border = 'rounded',   -- rounded border on the popup window
-        padding = { 1, 2 },   -- top/bottom, left/right padding
+        border = 'rounded', -- rounded border on the popup window
+        padding = { 1, 2 }, -- top/bottom, left/right padding
       },
     })
 

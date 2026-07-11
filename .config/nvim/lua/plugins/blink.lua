@@ -44,10 +44,10 @@ return {
       -- Order matters: earlier sources take priority in the menu.
       sources = {
         default = {
-          'lsp',      -- Language server completions (main source)
-          'path',     -- File system path completion (useful in strings)
-          'snippets',  -- Built-in snippet expansion
-          'buffer',   -- Words from currently open buffers (fallback)
+          'lsp', -- Language server completions (main source)
+          'path', -- File system path completion (useful in strings)
+          'snippets', -- Built-in snippet expansion
+          'buffer', -- Words from currently open buffers (fallback)
         },
       },
 
@@ -76,7 +76,7 @@ return {
         -- Show documentation popup alongside the completion menu
         documentation = {
           auto_show = true,
-          auto_show_delay_ms = 200,  -- small delay so it doesn't flicker
+          auto_show_delay_ms = 200, -- small delay so it doesn't flicker
         },
       },
 
