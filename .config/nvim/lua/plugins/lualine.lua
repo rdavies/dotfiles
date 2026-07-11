@@ -5,18 +5,18 @@ return {
   -- catppuccin must load before lualine so its theme is registered in time
   dependencies = { 'nvim-tree/nvim-web-devicons', 'catppuccin/nvim' },
   config = function()
-    require('lualine').setup {
+    require('lualine').setup({
       options = {
         -- 'catppuccin' is the only valid name, it will pick
         -- the theme set in config
         theme = 'catppuccin-mocha',
         -- don't show lualine in specific filetypes / plugin windows
-        disabled_filetypes = { 'undotree' }
+        disabled_filetypes = { 'undotree' },
       },
       -- disable filetype metadata on rhs UI
       sections = {
         lualine_x = {},
       },
-    }
-  end
+    })
+  end,
 }

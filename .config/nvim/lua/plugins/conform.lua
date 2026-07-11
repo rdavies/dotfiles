@@ -39,21 +39,21 @@ return {
       -- (both run sequentially on the same buffer).
       formatters_by_ft = {
         -- Python: prefer ruff (faster, also lints) — falls back to black
-        python     = { 'ruff_format', 'black' },
+        python = { 'ruff_format', 'black' },
         -- Lua: stylua respects your .editorconfig / stylua.toml settings
-        lua        = { 'stylua' },
+        lua = { 'stylua' },
         -- Shell / Bash
-        sh         = { 'shfmt' },
-        bash       = { 'shfmt' },
+        sh = { 'shfmt' },
+        bash = { 'shfmt' },
         -- JS / TS — prettier handles all these
         javascript = { 'prettier' },
         typescript = { 'prettier' },
         javascriptreact = { 'prettier' },
         typescriptreact = { 'prettier' },
         -- Data / config formats
-        json       = { 'prettier' },
-        yaml       = { 'prettier' },
-        markdown   = { 'prettier' },
+        json = { 'prettier' },
+        yaml = { 'prettier' },
+        markdown = { 'prettier' },
         -- Fallback: if no filetype-specific formatter matched, try prettier
         -- (comment this out if it causes unexpected formatting in other files)
         -- ['*'] = { 'prettier' },

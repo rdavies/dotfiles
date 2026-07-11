@@ -44,7 +44,6 @@ return {
     'williamboman/mason-lspconfig.nvim',
     dependencies = { 'williamboman/mason.nvim' },
     config = function()
-
       -- ── Global capabilities override ────────────────────────────────────
       -- Apply blink.cmp's enhanced capabilities to ALL servers via the '*'
       -- wildcard. This tells servers that our editor can handle snippets,
@@ -85,10 +84,10 @@ return {
         -- These servers are auto-installed on first launch if not present.
         -- Add more here as needed; run :Mason to browse available servers.
         ensure_installed = {
-          'lua_ls',   -- Lua (invaluable for editing this config)
-          'pyright',  -- Python (static type checking + completions)
-          'bashls',   -- Bash / Shell scripting
-          'ts_ls',    -- TypeScript & JavaScript (ready for when you need it)
+          'lua_ls', -- Lua (invaluable for editing this config)
+          'pyright', -- Python (static type checking + completions)
+          'bashls', -- Bash / Shell scripting
+          'ts_ls', -- TypeScript & JavaScript (ready for when you need it)
         },
 
         -- Automatically enable (vim.lsp.enable) every server that mason has
@@ -108,19 +107,19 @@ return {
           end
 
           -- Navigation
-          map('n', 'gd', vim.lsp.buf.definition,      'LSP: Go to definition')
-          map('n', 'gD', vim.lsp.buf.declaration,     'LSP: Go to declaration')
-          map('n', 'gr', vim.lsp.buf.references,      'LSP: List references')
-          map('n', 'gi', vim.lsp.buf.implementation,  'LSP: Go to implementation')
+          map('n', 'gd', vim.lsp.buf.definition, 'LSP: Go to definition')
+          map('n', 'gD', vim.lsp.buf.declaration, 'LSP: Go to declaration')
+          map('n', 'gr', vim.lsp.buf.references, 'LSP: List references')
+          map('n', 'gi', vim.lsp.buf.implementation, 'LSP: Go to implementation')
 
           -- Documentation
           -- K is the standard Vim "look up keyword" binding — we override it
           -- to show LSP hover docs (type info, signatures, docstrings)
-          map('n', 'K',     vim.lsp.buf.hover,           'LSP: Hover documentation')
-          map('n', '<C-k>', vim.lsp.buf.signature_help,  'LSP: Signature help')
+          map('n', 'K', vim.lsp.buf.hover, 'LSP: Hover documentation')
+          map('n', '<C-k>', vim.lsp.buf.signature_help, 'LSP: Signature help')
 
           -- Refactoring
-          map('n', '<leader>rn', vim.lsp.buf.rename,        'LSP: Rename symbol')
+          map('n', '<leader>rn', vim.lsp.buf.rename, 'LSP: Rename symbol')
           map({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, 'LSP: Code action')
 
           -- Format via LSP (conform.nvim handles format-on-save, but this is a
@@ -130,20 +129,20 @@ return {
           end, 'LSP: Format buffer')
 
           -- Diagnostics (errors, warnings, hints)
-          map('n', '[d',        vim.diagnostic.goto_prev,  'LSP: Previous diagnostic')
-          map('n', ']d',        vim.diagnostic.goto_next,  'LSP: Next diagnostic')
+          map('n', '[d', vim.diagnostic.goto_prev, 'LSP: Previous diagnostic')
+          map('n', ']d', vim.diagnostic.goto_next, 'LSP: Next diagnostic')
           map('n', '<leader>ld', vim.diagnostic.open_float, 'LSP: Show diagnostic detail')
         end,
       })
 
       -- ── Diagnostic display ───────────────────────────────────────────────
       vim.diagnostic.config({
-        signs = true,          -- show icons in the sign column (gutter)
+        signs = true, -- show icons in the sign column (gutter)
         virtual_text = {
-          prefix = '●',        -- bullet character before inline diagnostic messages
+          prefix = '●', -- bullet character before inline diagnostic messages
         },
-        update_in_insert = false,  -- don't update diagnostics while typing (less noisy)
-        severity_sort = true,      -- errors appear before warnings in lists
+        update_in_insert = false, -- don't update diagnostics while typing (less noisy)
+        severity_sort = true, -- errors appear before warnings in lists
         float = { border = 'rounded' }, -- rounded border on diagnostic float windows
       })
     end,

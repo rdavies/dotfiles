@@ -16,6 +16,6 @@ return {
         indent_blankline = { enabled = true },
       },
     })
-    vim.cmd.colorscheme 'catppuccin-mocha'
-  end
+    vim.cmd.colorscheme('catppuccin-mocha')
+  end,
 }

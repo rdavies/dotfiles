@@ -43,4 +43,9 @@ vim.keymap.set('v', '<leader>d', '"_d', { desc = 'Delete without overwriting cli
 vim.keymap.set('n', 'Q', '<nop>')
 
 -- substitute the currently selected word
-vim.keymap.set('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'Substitute word under cursor' })
+vim.keymap.set(
+  'n',
+  '<leader>s',
+  [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+  { desc = 'Substitute word under cursor' }
+)

@@ -44,7 +44,9 @@ vim.api.nvim_create_autocmd('ColorScheme', {
 
 local function tw_apply()
   -- Skip floating windows (plugin popups, completion menus, etc.)
-  if vim.api.nvim_win_get_config(0).relative ~= '' then return end
+  if vim.api.nvim_win_get_config(0).relative ~= '' then
+    return
+  end
   vim.fn.matchadd('ExtraWhitespace', [[\s\+$]])
 end
 
