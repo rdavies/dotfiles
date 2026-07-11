@@ -52,7 +52,6 @@ return {
 
       -- Buffer management (<leader>b...)
       --   <leader>bn  new buffer
-      --   <leader>bb  find/switch buffer (Telescope)
       --   <leader>bd  delete buffer
       --   <leader>bq  quit buffer (same as bd)
       --   <leader>bx  force-close buffer
@@ -64,8 +63,11 @@ return {
       --   <leader>w|  vertical split
       { '<leader>w', group = 'Window' },
 
-      -- Telescope: <leader>f find files, <leader>s live grep (see
-      -- telescope.lua) - both direct actions, not groups
+      -- File / fuzzy finding (<leader>f...) — Telescope
+      --   <leader>ff  find files
+      --   <leader>fb  find open buffers
+      --   <leader>fg  live grep (search string in project)
+      { '<leader>f', group = 'Find' },
 
       -- File explorer (<leader>e...) — oil.nvim
       --   <leader>ev  open file explorer
@@ -90,9 +92,8 @@ return {
       --   <leader>cf  format with conform (honours per-filetype formatter)
       { '<leader>c', group = 'Code' },
 
-      -- Refactoring (<leader>r...)
-      --   <leader>rn  rename symbol under cursor (updates all references) - lspconfig
-      --   <leader>rs  substitute word under cursor - keymaps.lua
+      -- Refactoring (<leader>r...) — lspconfig
+      --   <leader>rn  rename symbol under cursor (updates all references)
       { '<leader>r', group = 'Refactor' },
 
       -- ── Bracket navigation groups ───────────────────────────────────
