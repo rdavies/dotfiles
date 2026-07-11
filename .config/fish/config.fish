@@ -38,8 +38,8 @@ function fish_user_key_bindings
   fish_vi_key_bindings --no-erase insert
 end
 
-# set ctrl-o to open a vim in $EDITOR from fzf
-set fzf_dir_opts --bind "ctrl-o:execute($EDITOR {} &> /dev/tty)"
+# set ctrl-o to open a vim in $EDITOR from fzf's directory search (Ctrl+Alt+F)
+set fzf_directory_opts --bind "ctrl-o:execute($EDITOR {} &> /dev/tty)"
 
 # starship prompt init
 if type -q starship
