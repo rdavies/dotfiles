@@ -2,13 +2,16 @@
 --
 -- Neovim 0.11 introduced a native LSP config API (vim.lsp.config / vim.lsp.enable)
 -- that replaces the old require('lspconfig').X.setup() pattern.
--- We use two plugins here:
+-- We use three plugins here:
 --
 --   1. mason.nvim          — installs LSP servers locally (~/.local/share/nvim/mason/)
 --   2. mason-lspconfig.nvim — registers default server configs + auto-enables them
---
--- nvim-lspconfig is NOT used — mason-lspconfig 2.x ships its own defaults and
--- registers them via vim.lsp.config() without needing lspconfig as a middleman.
+--   3. nvim-lspconfig       — NOT set up or required anywhere below; it's a hard
+--      dependency of mason-lspconfig.nvim 2.x purely as a *data* package. Neovim's
+--      vim.lsp.enable() looks up each server's default cmd/filetypes/root_markers
+--      from lsp/<name>.lua files on the runtimepath, and nvim-lspconfig is what
+--      ships those files. Without it installed, mason-lspconfig has no defaults to
+--      register and enabled servers won't reliably attach to buffers.
 --
 -- Usage:
 --   :Mason            — open the Mason UI to browse/install/update servers
@@ -20,9 +23,12 @@ return {
   -- ────────────────────────────────────────────────────────────────────────────
   -- mason.nvim: downloads and manages LSP servers, DAP adapters, linters, etc.
   -- Nothing is installed system-wide — everything lives under ~/.local/share/nvim/mason/
+  -- (mason.nvim and mason-lspconfig.nvim moved from williamboman/* to the mason-org
+  -- GitHub org in 2025 — using the current canonical location rather than relying
+  -- on GitHub's redirect from the old owner.)
   -- ────────────────────────────────────────────────────────────────────────────
   {
-    'williamboman/mason.nvim',
+    'mason-org/mason.nvim',
     config = function()
       require('mason').setup({
         ui = { border = 'rounded' },
@@ -41,8 +47,11 @@ return {
   -- defaults before the server starts.
   -- ────────────────────────────────────────────────────────────────────────────
   {
-    'williamboman/mason-lspconfig.nvim',
-    dependencies = { 'williamboman/mason.nvim' },
+    'mason-org/mason-lspconfig.nvim',
+    -- nvim-lspconfig is required by mason-lspconfig.nvim >= 2.0 (see note above) —
+    -- its lsp/*.lua files are read directly by vim.lsp.enable(), so it's never
+    -- require()'d here and its old .setup() API is never called.
+    dependencies = { 'mason-org/mason.nvim', 'neovim/nvim-lspconfig' },
     config = function()
 
       -- ── Global capabilities override ────────────────────────────────────
