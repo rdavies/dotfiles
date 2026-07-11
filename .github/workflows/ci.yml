@@ -29,8 +29,12 @@ jobs:
 
       # stylua.toml lives in .config/nvim and pins 2-space indent / single
       # quotes to match the existing style; this just enforces it stays that way.
+      # --config-path is required here: stylua only auto-discovers a config
+      # in its own working directory, not in the target directory it's
+      # pointed at, so running it from the repo root against .config/nvim
+      # would otherwise silently fall back to stylua's own defaults.
       - name: Check formatting
-        run: ~/.cargo/bin/stylua --check .config/nvim
+        run: ~/.cargo/bin/stylua --config-path .config/nvim/stylua.toml --check .config/nvim
 
   shellcheck:
     name: ShellCheck
