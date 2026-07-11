@@ -111,7 +111,11 @@ return {
       --   gD  — go to declaration
       --   gr  — list all references
       --   gi  — go to implementation
+      --   g[ / g]  — move to left/right edge of a textobject (mini.ai)
       { 'g', group = 'Go to...' },
+
+      -- Surround (mini.surround) — sa add, sd delete, sr replace, sf find, sh highlight
+      { 's', group = 'Surround' },
     })
   end,
 }
