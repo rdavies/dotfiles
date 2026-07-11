@@ -22,10 +22,8 @@ return {
   -- releases are tested. The '*' glob means "any release tag".
   version = '*',
 
-  -- blink.cmp ships a Rust binary for its fuzzy matching algorithm.
-  -- lazy.nvim will compile it after install (requires Rust + cargo).
-  -- If Rust isn't available, blink falls back to a pure-Lua implementation.
-  build = 'cargo build --release',
+  -- No `build` step needed: pinned to a release tag, blink auto-downloads a
+  -- prebuilt binary (falls back to pure Lua if unavailable for the platform).
 
   config = function()
     require('blink.cmp').setup({

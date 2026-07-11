@@ -2,13 +2,13 @@
 --
 -- Neovim 0.11 introduced a native LSP config API (vim.lsp.config / vim.lsp.enable)
 -- that replaces the old require('lspconfig').X.setup() pattern.
--- We use two plugins here:
+-- We use three plugins here:
 --
 --   1. mason.nvim          — installs LSP servers locally (~/.local/share/nvim/mason/)
 --   2. mason-lspconfig.nvim — registers default server configs + auto-enables them
---
--- nvim-lspconfig is NOT used — mason-lspconfig 2.x ships its own defaults and
--- registers them via vim.lsp.config() without needing lspconfig as a middleman.
+--   3. nvim-lspconfig       — data-only dependency of mason-lspconfig.nvim 2.x;
+--      never require()'d. vim.lsp.enable() reads server defaults from its
+--      lsp/<name>.lua files on the runtimepath.
 --
 -- Usage:
 --   :Mason            — open the Mason UI to browse/install/update servers
@@ -20,9 +20,10 @@ return {
   -- ────────────────────────────────────────────────────────────────────────────
   -- mason.nvim: downloads and manages LSP servers, DAP adapters, linters, etc.
   -- Nothing is installed system-wide — everything lives under ~/.local/share/nvim/mason/
+  -- (moved from williamboman/* to mason-org/* in 2025; using the current location)
   -- ────────────────────────────────────────────────────────────────────────────
   {
-    'williamboman/mason.nvim',
+    'mason-org/mason.nvim',
     config = function()
       require('mason').setup({
         ui = { border = 'rounded' },
@@ -41,8 +42,9 @@ return {
   -- defaults before the server starts.
   -- ────────────────────────────────────────────────────────────────────────────
   {
-    'williamboman/mason-lspconfig.nvim',
-    dependencies = { 'williamboman/mason.nvim' },
+    'mason-org/mason-lspconfig.nvim',
+    -- nvim-lspconfig: data-only dependency, never require()'d (see note above)
+    dependencies = { 'mason-org/mason.nvim', 'neovim/nvim-lspconfig' },
     config = function()
       -- ── Global capabilities override ────────────────────────────────────
       -- Apply blink.cmp's enhanced capabilities to ALL servers via the '*'
