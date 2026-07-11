@@ -7,11 +7,8 @@ if status is-interactive
         source ~/.config/fish/aliases.fish
     end
 
-    # Catppuccin Mocha color theme, to match Alacritty/tmux/Neovim.
-    # Provided by fish >=4.4's bundled themes, or the catppuccin/fish
-    # fisher plugin (https://github.com/catppuccin/fish) on older fish.
-    # `choose` (unlike `theme save`) re-applies live and isn't persisted
-    # into fish_variables, so there's nothing generated to commit here.
+    # Catppuccin Mocha, matching Alacritty/tmux/Neovim. `choose` (not `save`)
+    # re-applies live instead of persisting into fish_variables.
     fish_config theme choose "Catppuccin Mocha"
 end
 
