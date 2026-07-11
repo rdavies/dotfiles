@@ -2,7 +2,17 @@ set -gx XDG_CONFIG_HOME $HOME/.config
 set -gx EDITOR nvim
 
 if status is-interactive
-    # Commands to run in interactive sessions can go here
+    # load alias file
+    if test -f ~/.config/fish/aliases.fish
+        source ~/.config/fish/aliases.fish
+    end
+
+    # Catppuccin Mocha color theme, to match Alacritty/tmux/Neovim.
+    # Provided by fish >=4.4's bundled themes, or the catppuccin/fish
+    # fisher plugin (https://github.com/catppuccin/fish) on older fish.
+    # `choose` (unlike `theme save`) re-applies live and isn't persisted
+    # into fish_variables, so there's nothing generated to commit here.
+    fish_config theme choose "Catppuccin Mocha"
 end
 
 # disable greeting
@@ -29,11 +39,6 @@ function fish_user_key_bindings
   # like fish autocomplete
   fish_default_key_bindings -M insert
   fish_vi_key_bindings --no-erase insert
-end
-
-# load alias file
-if test -f ~/.config/fish/aliases.fish
-  source ~/.config/fish/aliases.fish
 end
 
 # set ctrl-o to open a vim in $EDITOR from fzf
