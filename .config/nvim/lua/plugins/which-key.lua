@@ -65,9 +65,8 @@ return {
 
       -- File / fuzzy finding (<leader>f...) — Telescope
       --   <leader>ff  find files
-      --   <leader>fp  find git files (project files)
       --   <leader>fb  find open buffers
-      --   <leader>fs  live grep (search string in project)
+      --   <leader>fg  live grep (search string in project)
       { '<leader>f', group = 'Find' },
 
       -- File explorer (<leader>e...) — oil.nvim
