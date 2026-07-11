@@ -1,0 +1,81 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  lua-format:
+    name: Lua format (stylua)
+    runs-on: ubuntu-latest
+    env:
+      STYLUA_VERSION: "2.5.2"
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cache stylua binary
+        id: cache-stylua
+        uses: actions/cache@v4
+        with:
+          path: ~/.cargo/bin/stylua
+          key: stylua-${{ env.STYLUA_VERSION }}-${{ runner.os }}
+
+      # crates.io install avoids pinning to a release-binary URL/third-party action
+      - name: Install stylua
+        if: steps.cache-stylua.outputs.cache-hit != 'true'
+        run: cargo install stylua --version "${STYLUA_VERSION}" --locked
+
+      # --config-path needed: stylua only auto-discovers configs in its own
+      # cwd, not the target dir, so this would silently use defaults otherwise.
+      - name: Check formatting
+        run: ~/.cargo/bin/stylua --config-path .config/nvim/stylua.toml --check .config/nvim
+
+  shellcheck:
+    name: ShellCheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # No-op until a shell script exists again (setup_env.sh was removed)
+      - name: Run shellcheck on any tracked shell scripts
+        run: |
+          mapfile -t files < <(find . -type f -name '*.sh' -not -path './.git/*')
+          if [ "${#files[@]}" -eq 0 ]; then
+            echo "No shell scripts found, nothing to check."
+            exit 0
+          fi
+          shellcheck "${files[@]}"
+
+  toml-validate:
+    name: Validate TOML
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # Catches typos before they'd otherwise surface at actual app-load time
+      - name: Validate TOML files parse
+        run: |
+          python3 - <<'PYEOF'
+          import sys
+          import tomllib
+          import pathlib
+
+          failed = False
+          for path in sorted(pathlib.Path('.').rglob('*.toml')):
+              if '.git' in path.parts:
+                  continue
+              try:
+                  with open(path, 'rb') as f:
+                      tomllib.load(f)
+                  print(f'OK: {path}')
+              except Exception as e:
+                  print(f'FAIL: {path}: {e}', file=sys.stderr)
+                  failed = True
+          if failed:
+              sys.exit(1)
+          PYEOF
