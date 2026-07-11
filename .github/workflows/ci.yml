@@ -21,18 +21,13 @@ jobs:
           path: ~/.cargo/bin/stylua
           key: stylua-${{ env.STYLUA_VERSION }}-${{ runner.os }}
 
-      # Installed from crates.io rather than a release binary/third-party
-      # action, so this doesn't depend on knowing an exact download URL.
+      # crates.io install avoids pinning to a release-binary URL/third-party action
       - name: Install stylua
         if: steps.cache-stylua.outputs.cache-hit != 'true'
         run: cargo install stylua --version "${STYLUA_VERSION}" --locked
 
-      # stylua.toml lives in .config/nvim and pins 2-space indent / single
-      # quotes to match the existing style; this just enforces it stays that way.
-      # --config-path is required here: stylua only auto-discovers a config
-      # in its own working directory, not in the target directory it's
-      # pointed at, so running it from the repo root against .config/nvim
-      # would otherwise silently fall back to stylua's own defaults.
+      # --config-path needed: stylua only auto-discovers configs in its own
+      # cwd, not the target dir, so this would silently use defaults otherwise.
       - name: Check formatting
         run: ~/.cargo/bin/stylua --config-path .config/nvim/stylua.toml --check .config/nvim
 
@@ -42,8 +37,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # No shell scripts are tracked right now (setup_env.sh was removed),
-      # so this is a no-op until one shows back up.
+      # No-op until a shell script exists again (setup_env.sh was removed)
       - name: Run shellcheck on any tracked shell scripts
         run: |
           mapfile -t files < <(find . -type f -name '*.sh' -not -path './.git/*')
@@ -63,9 +57,7 @@ jobs:
         with:
           python-version: "3.11"
 
-      # Catches typos (a stray quote, a duplicate key) that would otherwise
-      # only surface the next time Alacritty/Herdr/starship actually loads
-      # the file.
+      # Catches typos before they'd otherwise surface at actual app-load time
       - name: Validate TOML files parse
         run: |
           python3 - <<'PYEOF'
