@@ -18,8 +18,7 @@ family = "SFMono Nerd Font"
 style = "Light"
 
 [terminal.shell]
-# Resolved via $PATH rather than a hardcoded Homebrew prefix, so this works
-# on Apple Silicon, Intel, and Linux alike.
+# Resolved via $PATH, so this works on Apple Silicon, Intel, and Linux alike.
 program = "fish"
 
 [window]
