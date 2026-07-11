@@ -1,7 +1,7 @@
 return {
   -- buffer line UI
   'akinsho/bufferline.nvim',
-  version = "*",
+  version = '*',
   dependencies = {
     'nvim-tree/nvim-web-devicons',
     -- load bufferline after setting up colorscheme
@@ -9,7 +9,7 @@ return {
   },
   config = function()
     require('bufferline').setup({
-      highlights = require("catppuccin.special.bufferline").get_theme(),
+      highlights = require('catppuccin.special.bufferline').get_theme(),
       options = {
         -- show buffer index numbers
         numbers = 'ordinal',
@@ -35,5 +35,5 @@ return {
     vim.keymap.set('n', '<leader>8', '<cmd>BufferLineGoToBuffer 8<CR>', { desc = 'Go to buffer 8' })
     vim.keymap.set('n', '<leader>9', '<cmd>BufferLineGoToBuffer 9<CR>', { desc = 'Go to buffer 9' })
     vim.keymap.set('n', '<leader>$', '<cmd>BufferLineGoToBuffer -1<CR>', { desc = 'Go to buffer -1' })
-  end
+  end,
 }
