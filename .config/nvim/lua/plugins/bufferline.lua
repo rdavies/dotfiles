@@ -1,7 +1,7 @@
 return {
   -- buffer line UI
   'akinsho/bufferline.nvim',
-  version = "*",
+  version = '*',
   dependencies = {
     'nvim-tree/nvim-web-devicons',
     -- load bufferline after setting up colorscheme
@@ -9,7 +9,7 @@ return {
   },
   config = function()
     require('bufferline').setup({
-      highlights = require("catppuccin.special.bufferline").get_theme(),
+      highlights = require('catppuccin.special.bufferline').get_theme(),
       options = {
         -- show buffer index numbers
         numbers = 'ordinal',
