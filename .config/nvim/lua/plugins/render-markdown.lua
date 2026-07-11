@@ -1,9 +1,6 @@
--- render-markdown.nvim: renders markdown with icons/concealment while
--- editing (headings, bullets, checkboxes, code block labels) instead of
--- showing raw markdown syntax. Needs a Nerd Font for the glyphs - already
--- covered by Alacritty's SFMono Nerd Font. Reuses the markdown/markdown_inline
--- treesitter parsers (already in treesitter.lua) and nvim-web-devicons
--- (already installed for bufferline/oil/lualine) rather than adding mini.icons.
+-- Renders markdown (headings/bullets/checkboxes/code labels) while editing.
+-- Needs a Nerd Font (already have one); reuses existing treesitter parsers
+-- and nvim-web-devicons instead of adding mini.icons.
 
 return {
   'MeanderingProgrammer/render-markdown.nvim',
