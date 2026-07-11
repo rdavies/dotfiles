@@ -13,7 +13,8 @@ return {
       transparent_background = true,
       no_italic = true,
       integrations = {
-        indent_blankline = { enabled = true },
+        -- covers mini.ai/mini.surround/mini.indentscope highlight groups
+        mini = { enabled = true },
       },
     })
     vim.cmd.colorscheme('catppuccin-mocha')

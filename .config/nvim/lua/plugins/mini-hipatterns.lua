@@ -1,7 +1,8 @@
 return {
   -- Highlights hex color strings (`#rrggbb`) with their actual color inline.
   -- TODO/FIXME/NOTE highlighting is handled by todo-comments.nvim instead.
-  'echasnovski/mini.hipatterns',
+  -- (moved from echasnovski/* to nvim-mini/* in 2025; using the current location)
+  'nvim-mini/mini.hipatterns',
   version = false,
   config = function()
     local hipatterns = require('mini.hipatterns')

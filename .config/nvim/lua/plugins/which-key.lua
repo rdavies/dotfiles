@@ -103,6 +103,7 @@ return {
       -- [d / ]d  — previous / next LSP diagnostic (lsp.lua)
       -- [h / ]h  — previous / next git hunk (gitsigns.lua)
       -- [t / ]t  — previous / next TODO comment (todo-comments)
+      -- [i / ]i  — go to indent scope top / bottom (mini.indentscope)
       { '[', group = 'Previous...' },
       { ']', group = 'Next...' },
 
@@ -111,7 +112,11 @@ return {
       --   gD  — go to declaration
       --   gr  — list all references
       --   gi  — go to implementation
+      --   g[ / g]  — move to left/right edge of a textobject (mini.ai)
       { 'g', group = 'Go to...' },
+
+      -- Surround (mini.surround) — sa add, sd delete, sr replace, sf find, sh highlight
+      { 's', group = 'Surround' },
     })
   end,
 }
