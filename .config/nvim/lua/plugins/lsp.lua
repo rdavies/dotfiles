@@ -6,12 +6,9 @@
 --
 --   1. mason.nvim          — installs LSP servers locally (~/.local/share/nvim/mason/)
 --   2. mason-lspconfig.nvim — registers default server configs + auto-enables them
---   3. nvim-lspconfig       — NOT set up or required anywhere below; it's a hard
---      dependency of mason-lspconfig.nvim 2.x purely as a *data* package. Neovim's
---      vim.lsp.enable() looks up each server's default cmd/filetypes/root_markers
---      from lsp/<name>.lua files on the runtimepath, and nvim-lspconfig is what
---      ships those files. Without it installed, mason-lspconfig has no defaults to
---      register and enabled servers won't reliably attach to buffers.
+--   3. nvim-lspconfig       — data-only dependency of mason-lspconfig.nvim 2.x;
+--      never require()'d. vim.lsp.enable() reads server defaults from its
+--      lsp/<name>.lua files on the runtimepath.
 --
 -- Usage:
 --   :Mason            — open the Mason UI to browse/install/update servers
@@ -23,9 +20,7 @@ return {
   -- ────────────────────────────────────────────────────────────────────────────
   -- mason.nvim: downloads and manages LSP servers, DAP adapters, linters, etc.
   -- Nothing is installed system-wide — everything lives under ~/.local/share/nvim/mason/
-  -- (mason.nvim and mason-lspconfig.nvim moved from williamboman/* to the mason-org
-  -- GitHub org in 2025 — using the current canonical location rather than relying
-  -- on GitHub's redirect from the old owner.)
+  -- (moved from williamboman/* to mason-org/* in 2025; using the current location)
   -- ────────────────────────────────────────────────────────────────────────────
   {
     'mason-org/mason.nvim',
@@ -48,9 +43,7 @@ return {
   -- ────────────────────────────────────────────────────────────────────────────
   {
     'mason-org/mason-lspconfig.nvim',
-    -- nvim-lspconfig is required by mason-lspconfig.nvim >= 2.0 (see note above) —
-    -- its lsp/*.lua files are read directly by vim.lsp.enable(), so it's never
-    -- require()'d here and its old .setup() API is never called.
+    -- nvim-lspconfig: data-only dependency, never require()'d (see note above)
     dependencies = { 'mason-org/mason.nvim', 'neovim/nvim-lspconfig' },
     config = function()
 
