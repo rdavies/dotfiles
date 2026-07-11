@@ -6,11 +6,9 @@ vim.keymap.set('n', 'k', "v:count ? 'k' : 'gk'", { noremap = true, expr = true }
 vim.keymap.set('n', '<leader>w-', '<C-W>s<cr>', { desc = 'Open horizontal split' })
 vim.keymap.set('n', '<leader>w|', '<C-W>v<cr>', { desc = 'Open vertical split' })
 
--- move to window using the <ctrl> hjkl keys
-vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Go to left window' })
-vim.keymap.set('n', '<C-j>', '<C-w>j', { desc = 'Go to lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w>k', { desc = 'Go to upper window' })
-vim.keymap.set('n', '<C-l>', '<C-w>l', { desc = 'Go to right window' })
+-- move to window using the <ctrl> hjkl keys — handled by
+-- vim-tmux-navigator (lua/plugins/vim-tmux-navigator.lua), which also
+-- extends these across the tmux pane boundary
 
 -- resize window using <ctrl> arrow keys
 vim.keymap.set('n', '<C-Up>', '<cmd>resize +2<cr>', { desc = 'Increase window height' })
@@ -39,9 +37,9 @@ vim.keymap.set('v', '<', '<gv')
 vim.keymap.set('v', '>', '>gv')
 
 -- pasting & deleting without overwriting the clipboard buffer
-vim.keymap.set('x', '<leader>p', '\"_dP', { desc = 'Paste without overwriting clipboard' })
-vim.keymap.set('n', '<leader>d', '\"_d', { desc = 'Delete without overwriting clipboard' })
-vim.keymap.set('v', '<leader>d', '\"_d', { desc = 'Delete without overwriting clipboard' })
+vim.keymap.set('x', '<leader>p', '"_dP', { desc = 'Paste without overwriting clipboard' })
+vim.keymap.set('n', '<leader>d', '"_d', { desc = 'Delete without overwriting clipboard' })
+vim.keymap.set('v', '<leader>d', '"_d', { desc = 'Delete without overwriting clipboard' })
 
 -- disable Q
 vim.keymap.set('n', 'Q', '<nop>')
