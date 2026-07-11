@@ -103,7 +103,6 @@ return {
       -- [d / ]d  — previous / next LSP diagnostic (lsp.lua)
       -- [h / ]h  — previous / next git hunk (gitsigns.lua)
       -- [t / ]t  — previous / next TODO comment (todo-comments)
-      -- [i / ]i  — go to indent scope top / bottom (mini.indentscope)
       { '[', group = 'Previous...' },
       { ']', group = 'Next...' },
 
