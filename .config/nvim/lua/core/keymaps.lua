@@ -45,7 +45,7 @@ vim.keymap.set('n', 'Q', '<nop>')
 -- substitute the currently selected word
 vim.keymap.set(
   'n',
-  '<leader>s',
+  '<leader>rs',
   [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
   { desc = 'Substitute word under cursor' }
 )
