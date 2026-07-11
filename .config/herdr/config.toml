@@ -1,0 +1,58 @@
+# Herdr config — EXPLORATORY, not battle-tested like the rest of this repo.
+# Starter config for https://herdr.dev, mirroring .config/tmux/tmux.conf's
+# keybindings/theme as closely as Herdr's action set allows. Anything that
+# couldn't map 1:1 is called out inline.
+
+[theme]
+# catppuccin mocha, matching Alacritty/tmux/Neovim
+name = "catppuccin"
+
+[terminal]
+# mirrors tmux's "open new panes in cwd" (-c "#{pane_current_path}")
+new_cwd = "follow"
+
+[keys]
+# tmux.conf remaps prefix from ctrl+b to ctrl+a
+prefix = "ctrl+a"
+
+# tmux's detach-client is prefix+d (tmux.conf never rebinds it)
+detach = "prefix+d"
+
+# tmux: `bind c new-window -c ...` -> prefix+c
+new_tab = "prefix+c"
+# tmux: C-p/C-n prev/next-window in the prefix table -> drop the redundant
+# ctrl; also Herdr's own defaults for these two
+previous_tab = "prefix+p"
+next_tab = "prefix+n"
+# tmux's `bind a last-window` has no tab-level equivalent (Herdr only has a
+# last-*pane* toggle) - left unbound
+
+# tmux: prefix+h/j/k/l select-pane -L/-D/-U/-R -> already Herdr's defaults
+focus_pane_left = "prefix+h"
+focus_pane_down = "prefix+j"
+focus_pane_up = "prefix+k"
+focus_pane_right = "prefix+l"
+
+# tmux's `-` split-window -v (stacked) -> exact key match
+split_horizontal = "prefix+minus"
+# tmux's `|` split-window -h (side-by-side): "|" isn't a confirmed Herdr key
+# token, so using Herdr's default (prefix+v) rather than guessing. Try
+# `prefix+|` if you want literal parity - invalid bindings just warn, not fail.
+split_vertical = "prefix+v"
+
+# tmux's `"` / `%` are just -c variants of the splits above, redundant now
+# that new_cwd = "follow" makes every split cwd-aware already
+
+# tmux's close_pane (prefix+x) / zoom (prefix+z) are unmodified tmux
+# defaults that already match Herdr's own defaults - listed for visibility
+close_pane = "prefix+x"
+zoom = "prefix+z"
+
+# tmux: `bind r source-file ...` -> reload_config. Kept at Herdr's default
+# (prefix+shift+r) rather than tmux's plain "r", which stays free for
+# Herdr's own resize_mode.
+reload_config = "prefix+shift+r"
+
+# No tmux equivalent, left at Herdr's defaults: vi-style copy-mode (closest
+# is edit_scrollback, a different paradigm), resize_mode, last_pane,
+# workspace-level actions (tmux never binds session management beyond default)
