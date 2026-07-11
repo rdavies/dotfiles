@@ -1,0 +1,6 @@
+# Matches the style already used across lua/**: 2-space indent, single quotes.
+# Without this, conform.nvim's format-on-save would reformat everything to
+# stylua's defaults (4-space indent, double quotes) on the next save.
+indent_type = "Spaces"
+indent_width = 2
+quote_style = "AutoPreferSingle"
