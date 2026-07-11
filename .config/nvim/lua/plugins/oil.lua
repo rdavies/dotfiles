@@ -10,5 +10,5 @@ return {
     -- open Explore [view] (netrw)
     vim.keymap.set('n', '<leader>ev', module.open, { desc = 'Explore parent directory' })
     vim.keymap.set('n', '-', module.open, { desc = 'Explore parent directory' })
-  end
+  end,
 }

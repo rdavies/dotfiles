@@ -35,5 +35,5 @@ return {
     vim.keymap.set('n', '<leader>8', '<cmd>BufferLineGoToBuffer 8<CR>', { desc = 'Go to buffer 8' })
     vim.keymap.set('n', '<leader>9', '<cmd>BufferLineGoToBuffer 9<CR>', { desc = 'Go to buffer 9' })
     vim.keymap.set('n', '<leader>$', '<cmd>BufferLineGoToBuffer -1<CR>', { desc = 'Go to buffer -1' })
-  end
+  end,
 }
