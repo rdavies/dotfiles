@@ -32,6 +32,25 @@ config.window_padding = { left = 18, right = 18, top = 16, bottom = 16 }
 config.initial_cols = 135
 config.initial_rows = 40
 
+-- native macOS vibrancy/translucency to go with the opacity above
+config.macos_window_background_blur = 20
+
+-- no tab bar: tmux (already auto-attached by fish) is the multiplexer here,
+-- so WezTerm's own tabs would just be redundant chrome
+config.enable_tab_bar = false
+
+-- real macOS Spaces fullscreen instead of WezTerm's own borderless toggle
+config.native_macos_fullscreen_mode = true
+
+-- keep window geometry stable when changing font size instead of resizing
+config.adjust_window_size_when_changing_font_size = false
+
+-- brew (not WezTerm's own GitHub-polling updater) is how this gets updated
+config.check_for_updates = false
+
+-- tmux is the actual session-persistence layer, not this window
+config.window_close_confirmation = 'NeverPrompt'
+
 -- treat both Option keys as plain Alt (not accent/compose), matching
 -- alacritty.toml's option_as_alt = "Both"
 config.send_composed_key_when_left_alt_is_pressed = false
