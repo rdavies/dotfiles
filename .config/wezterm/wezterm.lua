@@ -7,6 +7,25 @@
 local wezterm = require('wezterm')
 local config = wezterm.config_builder()
 
+-- macOS launches WezTerm as a GUI app (Finder/Dock), so it inherits a bare
+-- system PATH ("/usr/bin:/bin:/usr/sbin:/sbin") instead of a shell's PATH -
+-- Homebrew's bin dir is missing, so a bare "fish" can't be found without
+-- this. Mirrors the same brew-prefix check config.fish already uses.
+local function homebrew_bin_dir()
+  for _, dir in ipairs({ '/opt/homebrew/bin', '/home/linuxbrew/.linuxbrew/bin' }) do
+    local f = io.open(dir .. '/brew')
+    if f then
+      f:close()
+      return dir
+    end
+  end
+end
+
+local brew_bin = homebrew_bin_dir()
+if brew_bin then
+  config.set_environment_variables = { PATH = brew_bin .. ':' .. os.getenv('PATH') }
+end
+
 -- shell: resolved via $PATH, same reasoning as alacritty.toml's
 -- terminal.shell.program (portable across Apple Silicon/Intel/Linux)
 config.default_prog = { 'fish' }
