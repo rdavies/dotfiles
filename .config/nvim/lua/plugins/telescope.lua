@@ -4,8 +4,16 @@ return {
   dependencies = { 'nvim-lua/plenary.nvim' },
   lazy = true,
 
-  -- all keys that should trigger lazy-loading of telescope
-  keys = { '<leader>ff', '<leader>fb', '<leader>fg', '<C-p>' },
+  -- all keys that should trigger lazy-loading of telescope. Descriptions are
+  -- given here (not just in the vim.keymap.set calls below) so which-key
+  -- shows them correctly even before telescope has loaded for the first time -
+  -- otherwise which-key only sees lazy.nvim's undescribed placeholder mapping.
+  keys = {
+    { '<leader>ff', desc = 'Find: Files' },
+    { '<leader>fb', desc = 'Find: Buffers' },
+    { '<leader>fg', desc = 'Find: Grep' },
+    { '<C-p>', desc = 'Find: Files' },
+  },
 
   config = function()
     require('telescope').setup()
