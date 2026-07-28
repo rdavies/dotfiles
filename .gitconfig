@@ -8,7 +8,7 @@
   dd = diff -r HEAD^
   dc = diff --cached
   co = checkout
-  amend = commit --amend --no-edit --reset-author
+  amend = commit --amend --no-edit
   sl = log --graph --pretty='%C(yellow)%h %C(green)%cn %C(blue)%ad %C(red)%s ' --date=human
 # separate file for username / auth
 [include]

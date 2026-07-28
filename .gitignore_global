@@ -10,3 +10,5 @@
 .vscode/
 *.orig
 .env
+
+**/.claude/settings.local.json
