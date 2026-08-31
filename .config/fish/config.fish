@@ -24,11 +24,11 @@ end
 
 # attach to or create a tmux session called "main"
 if status is-interactive && type -q tmux && test -z "$TMUX"
-    tmux new-session -A -s main
+  # tmux new-session -A -s main
 end
 
-# add ~/bin and ~/.local/bin to $PATH
-fish_add_path $HOME/bin $HOME/.local/bin
+# add ~/bin, ~/.local/bin, /usr/local/bin, and ~/.cargo/bin (rustup) to $PATH
+fish_add_path $HOME/bin $HOME/.local/bin /usr/local/bin $HOME/.cargo/bin
 
 # setup vim mode
 function fish_user_key_bindings
