@@ -24,7 +24,7 @@ end
 
 # attach to or create a tmux session called "main"
 if status is-interactive && type -q tmux && test -z "$TMUX"
-  # tmux new-session -A -s main
+  tmux new-session -A -s main
 end
 
 # add ~/bin, ~/.local/bin, /usr/local/bin, and ~/.cargo/bin (rustup) to $PATH
