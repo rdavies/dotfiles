@@ -1,12 +1,11 @@
--- Renders markdown (headings/bullets/checkboxes/code labels) while editing.
--- Needs a Nerd Font (already have one); reuses existing treesitter parsers
--- and nvim-web-devicons instead of adding mini.icons.
-
+-- LazyVim's lang.markdown extra (enabled in lua/config/lazy.lua) disables
+-- checkbox styling by default; this restores the ☐/☑ glyphs for `- [ ]`/
+-- `- [x]` task items. Headings/colors/icons are unaffected either way.
 return {
-  'MeanderingProgrammer/render-markdown.nvim',
-  ft = 'markdown',
-  dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
-  config = function()
-    require('render-markdown').setup({})
-  end,
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    opts = {
+      checkbox = { enabled = true },
+    },
+  },
 }

@@ -1,22 +1,16 @@
+-- lualine.nvim is already a LazyVim default (lazyvim.plugins.ui) with a
+-- richer statusline (branch, diagnostics, git diff, lazy-update indicator,
+-- etc). This only swaps the theme to catppuccin and hides the statusline in
+-- the undotree window -- everything else is inherited.
 return {
-  -- status line
-  'nvim-lualine/lualine.nvim',
-  -- optional, enables icons in the status line
-  -- catppuccin must load before lualine so its theme is registered in time
-  dependencies = { 'nvim-tree/nvim-web-devicons', 'catppuccin/nvim' },
-  config = function()
-    require('lualine').setup({
-      options = {
-        -- 'catppuccin' is the only valid name, it will pick
-        -- the theme set in config
-        theme = 'catppuccin-mocha',
-        -- don't show lualine in specific filetypes / plugin windows
-        disabled_filetypes = { 'undotree' },
-      },
-      -- disable filetype metadata on rhs UI
-      sections = {
-        lualine_x = {},
-      },
-    })
-  end,
+  {
+    "nvim-lualine/lualine.nvim",
+    dependencies = { "catppuccin/nvim" },
+    opts = function(_, opts)
+      opts.options.theme = "catppuccin-mocha"
+      opts.options.disabled_filetypes = opts.options.disabled_filetypes or {}
+      opts.options.disabled_filetypes.statusline = opts.options.disabled_filetypes.statusline or {}
+      table.insert(opts.options.disabled_filetypes.statusline, "undotree")
+    end,
+  },
 }

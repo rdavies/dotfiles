@@ -1,18 +1,6 @@
+-- todo-comments.nvim is already a LazyVim default (lazyvim.plugins.editor)
+-- with identical ]t/[t keymaps plus Trouble/picker integration
+-- (<leader>xt/xT, <leader>st/sT). This only disables the sign column icons.
 return {
-  -- highlight & search TODO-like comments
-  'folke/todo-comments.nvim',
-  dependencies = { 'nvim-lua/plenary.nvim' },
-  config = function()
-    require('todo-comments').setup({
-      -- disable icons in the signs column
-      signs = false,
-    })
-
-    vim.keymap.set('n', ']t', function()
-      require('todo-comments').jump_next()
-    end, { desc = 'Next todo comment' })
-    vim.keymap.set('n', '[t', function()
-      require('todo-comments').jump_prev()
-    end, { desc = 'Previous todo comment' })
-  end,
+  { "folke/todo-comments.nvim", opts = { signs = false } },
 }

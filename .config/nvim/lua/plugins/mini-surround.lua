@@ -11,9 +11,9 @@
 -- input-wait, same tradeoff every surround plugin using this prefix makes.
 
 return {
-  'nvim-mini/mini.surround',
+  "nvim-mini/mini.surround",
   version = false,
   config = function()
-    require('mini.surround').setup()
+    require("mini.surround").setup()
   end,
 }
