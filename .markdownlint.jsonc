@@ -1,0 +1,5 @@
+{
+  // Angle-bracket placeholders (e.g. "<technical reason Y is correct here>")
+  // are common in instruction/example text and aren't actually inline HTML.
+  "MD033": false
+}

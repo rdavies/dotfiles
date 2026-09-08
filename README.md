@@ -15,10 +15,7 @@ things to look/work the same as everywhere else:
 # packages + apps
 brew install neovim ripgrep fd bat tmux fzf starship eza zoxide fish
 brew tap epk/epk
-brew install --cask alacritty font-sf-mono-nerd-font
-
-# catppuccin theme for Alacritty (imported by alacritty.toml)
-git clone https://github.com/catppuccin/alacritty.git ~/.config/alacritty/catppuccin
+brew install --cask wezterm font-sf-mono-nerd-font
 
 # tmux plugin manager — required before `<prefix>I` will install anything
 git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
